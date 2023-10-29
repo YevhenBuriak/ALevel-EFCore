@@ -9,3 +9,4 @@
 	6. Design time installed
 
 7. Relationships (1-1, 1-*, *-*)
+8. Isolate configurations
