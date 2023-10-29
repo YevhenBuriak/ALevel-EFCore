@@ -1,10 +1,11 @@
 ﻿using EFCore1.Context;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCore1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/showcase")]
     [ApiController]
     public class EfTestController : ControllerBase
     {
@@ -15,7 +16,7 @@ namespace EFCore1.Controllers
             _dbcontext = dbcontext;
         }
 
-        [HttpGet]
+        [HttpGet("connection-test")]
         public async Task<ActionResult> TestConnection()
         {
             if (_dbcontext.Database.CanConnect())
@@ -24,6 +25,14 @@ namespace EFCore1.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet("users")]
+        public async Task<ActionResult> GetUsers()
+        {
+            var users = await _dbcontext.Users.ToListAsync();
+
+            return Ok(users);
         }
     }
 }
