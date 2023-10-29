@@ -10,3 +10,5 @@
 
 7. Relationships (1-1, 1-*, *-*)
 8. Isolate configurations
+9. Database first + scafold  
+	dotnet ef dbcontext scaffold "Name=ConnectionStrings:EFCoreContext" Microsoft.EntityFrameworkCore.SqlServer
