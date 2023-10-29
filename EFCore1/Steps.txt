@@ -1,4 +1,4 @@
 1. Create web API, cleanup unused files
 2. Intall packages and ef tools 
 	https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
-3. Create context
+3. Create context, connect to mssql DB, and test connection
