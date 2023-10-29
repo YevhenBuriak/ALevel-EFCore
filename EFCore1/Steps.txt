@@ -3,3 +3,7 @@
 	https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
 3. Create context, connect to mssql DB, and test connection
 4. Move connection string to better place, use appsetting, show user secrets
+5 - 6.
+	Add initial model discuss configuration, add initial migration, apply to db, change initial catalog
+	5. No Design time installed
+	6. Design time installed
