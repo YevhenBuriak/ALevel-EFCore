@@ -8,14 +8,19 @@ namespace EFCore1.Controllers
     [ApiController]
     public class EfTestController : ControllerBase
     {
+        private readonly EFCoreContext _dbcontext;
+
+        public EfTestController(EFCoreContext dbcontext)
+        {
+            _dbcontext = dbcontext;
+        }
+
         [HttpGet]
         public async Task<ActionResult> TestConnection()
         {
-            var dbContext = new EFCoreContext();
-
-            if (dbContext.Database.CanConnect())
+            if (_dbcontext.Database.CanConnect())
             {
-                return Ok(dbContext.Database.ProviderName);
+                return Ok(_dbcontext.Database.ProviderName);
             }
 
             return BadRequest();
