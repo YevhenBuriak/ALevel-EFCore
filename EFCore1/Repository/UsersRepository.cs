@@ -77,25 +77,9 @@ namespace EFCore1.Repository
 
         public async Task<IEnumerable<User>> Get()
         {
-            return await _dbContext.Users.ToListAsync();
+            var query =  _dbContext.Users.Where(x => string.IsNullOrEmpty(x.Surname));
 
-            /*
-             * .AsNoTracking()
-             * .Where()
-             * .OrderBy()
-             * .First()
-             * .FirstOrDefault()
-             * .Single()
-             * .SingleOrDefault()
-             * .Select()
-             * ...
-             */
-
-            // IQuryable
-            // var query = _dbContext.Users.Where(x => x.Id > 2);
-            // query = query.OrderByDescending(x => x.Name);
-
-            // return await query.ToListAsync();
+            return await query.ToListAsync();
         }
     }
 }
