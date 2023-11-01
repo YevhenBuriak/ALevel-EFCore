@@ -1,6 +1,8 @@
 ﻿using EFCore1.Context;
 using EFCore1.Models;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace EFCore1.Repository
 {
     public class UsersRepository
@@ -71,6 +73,29 @@ namespace EFCore1.Repository
 
             existingUser.BlogSubscribsions = blogs;
             _ = await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<User>> Get()
+        {
+            return await _dbContext.Users.ToListAsync();
+
+            /*
+             * .AsNoTracking()
+             * .Where()
+             * .OrderBy()
+             * .First()
+             * .FirstOrDefault()
+             * .Single()
+             * .SingleOrDefault()
+             * .Select()
+             * ...
+             */
+
+            // IQuryable
+            // var query = _dbContext.Users.Where(x => x.Id > 2);
+            // query = query.OrderByDescending(x => x.Name);
+
+            // return await query.ToListAsync();
         }
     }
 }

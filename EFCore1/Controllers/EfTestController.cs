@@ -59,7 +59,8 @@ namespace EFCore1.Controllers
         [HttpGet("users")]
         public async Task<ActionResult> GetUsers()
         {
-            var users = await _dbContext.Users.ToListAsync();
+            var repo = new UsersRepository(_dbContext);
+            var users = await repo.Get();
 
             return Ok(users);
         }
