@@ -9,7 +9,7 @@ public class BlogConfiguration : IEntityTypeConfiguration<Blog>
 {
     public void Configure(EntityTypeBuilder<Blog> builder)
     {
-        builder.HasMany(x => x.Articles).WithOne(x => x.Blog);
-        builder.HasMany(x => x.Readers).WithMany(x => x.BlogSubscribsions);
+       //builder.HasMany(x => x.Articles).WithOne(x => x.Blog);
+        //builder.HasMany(x => x.Readers).WithMany(x => x.BlogSubscribsions);
     }
 }

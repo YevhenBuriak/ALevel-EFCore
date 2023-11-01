@@ -7,9 +7,9 @@
         public string? Description { get; set; }
 
         //*-*
-        public ICollection<User>? Readers { get; set; }
+        //public ICollection<User>? Readers { get; set; }
 
         //1-*
-        public ICollection<Article>? Articles { get; set; }
+        //public ICollection<Article>? Articles { get; set; }
     }
 }

@@ -10,6 +10,7 @@ builder.Services.AddDbContext<EFCoreContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(EFCoreContext)));
     options.EnableSensitiveDataLogging();
+    options.UseLazyLoadingProxies();
 });
 
 

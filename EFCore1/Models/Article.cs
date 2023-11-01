@@ -6,9 +6,9 @@
         public required string Text { get; set; }
 
         //1-*
-        public required Blog Blog { get; set; }
+        //public required Blog Blog { get; set; }
 
         //*-*
-        public required ICollection<User> Athors { get; set; }
+        //public required ICollection<User> Athors { get; set; }
     }
 }

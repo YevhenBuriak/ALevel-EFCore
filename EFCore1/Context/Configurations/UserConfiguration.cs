@@ -21,12 +21,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 y => y.HasValue ? DateOnly.FromDateTime(y.Value) : null)
             );
 
-        builder
-            .HasOne(x => x.UserSettings)
-            .WithOne(x => x.User)
-            .OnDelete(DeleteBehavior.ClientSetNull);
+        //builder
+        //    .HasOne(x => x.UserSettings)
+        //    .WithOne(x => x.User)
+        //    .OnDelete(DeleteBehavior.ClientSetNull);
 
-        builder.HasMany(x => x.Articles).WithMany(x => x.Athors);
-        builder.HasMany(x => x.BlogSubscribsions).WithMany(x => x.Readers);
+        //builder.HasMany(x => x.Articles).WithMany(x => x.Athors);
+        //builder.HasMany(x => x.BlogSubscribsions).WithMany(x => x.Readers);
     }
 }

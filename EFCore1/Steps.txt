@@ -12,7 +12,10 @@ https://www.cosmicpython.com/book/chapter_02_repository.html
 4.1 IQueryable
 4.2 Query logging
 
-5. Related items querying: lazy loading, eager loading
+5. Related items querying: 
+5.1 lazy loading Microsoft.EntityFrameworkCore.Proxies
+5.2 eager loading
+5.3 explicit loading
 
 6. What is transaction? ACID, EF core implementation
 7. DTOs

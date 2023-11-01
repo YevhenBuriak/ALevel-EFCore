@@ -71,15 +71,13 @@ namespace EFCore1.Repository
             var existingUser = await _dbContext.Users.FindAsync(userId);
             if (existingUser == null) return;
 
-            existingUser.BlogSubscribsions = blogs;
+            //existingUser.BlogSubscribsions = blogs;
             _ = await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<User>> Get()
         {
-            var query =  _dbContext.Users.Where(x => string.IsNullOrEmpty(x.Surname));
-
-            return await query.ToListAsync();
+           return await _dbContext.Users.ToListAsync();
         }
     }
 }

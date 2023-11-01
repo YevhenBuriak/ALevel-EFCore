@@ -9,8 +9,8 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Article>
 {
     public void Configure(EntityTypeBuilder<Article> builder)
     {
-        builder.HasOne(x => x.Blog).WithMany(x => x.Articles);
-        builder.HasMany(x => x.Athors).WithMany(x => x.Articles);
+        //builder.HasOne(x => x.Blog).WithMany(x => x.Articles);
+        //builder.HasMany(x => x.Athors).WithMany(x => x.Articles);
     }
 }
 
