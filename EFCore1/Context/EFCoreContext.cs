@@ -7,6 +7,7 @@ namespace EFCore1.Context;
 public class EFCoreContext : DbContext
 {
     public DbSet<User> Users { get; private set; }
+    public DbSet<UserSettings> UserSettings { get; private set; }
 
     public EFCoreContext(DbContextOptions<EFCoreContext> options) : base(options) { }
 

@@ -52,5 +52,25 @@ namespace EFCore1.Repository
             _dbContext.Remove(tacker);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task InsertOneToOne(int userId, UserSettings settings)
+        {
+            // Option 1: find, update
+            var existingUser = await _dbContext.Users.FindAsync(userId);
+            if (existingUser == null) return;
+
+            existingUser.UserSettings = settings;
+            _ = await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task InsertManyToMany(int userId, ICollection<Blog> blogs)
+        {
+            // Option 1: find, update
+            var existingUser = await _dbContext.Users.FindAsync(userId);
+            if (existingUser == null) return;
+
+            existingUser.BlogSubscribsions = blogs;
+            _ = await _dbContext.SaveChangesAsync();
+        }
     }
 }

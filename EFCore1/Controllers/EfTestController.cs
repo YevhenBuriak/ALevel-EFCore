@@ -46,7 +46,7 @@ namespace EFCore1.Controllers
 
             // 6. Detach one
             _dbContext.Entry(users.Last()).State = EntityState.Detached;
-            
+
             // 6. Detach all
             _dbContext.ChangeTracker.Clear();
 
@@ -64,7 +64,7 @@ namespace EFCore1.Controllers
             return Ok(users);
         }
 
-        [HttpPost]
+        [HttpPost("users")]
         public async Task<ActionResult> CreateUser(User user)
         {
             var repo = new UsersRepository(_dbContext);
@@ -73,7 +73,7 @@ namespace EFCore1.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("users")]
         public async Task<ActionResult> UpdateUser(User user)
         {
             var repo = new UsersRepository(_dbContext);
@@ -82,11 +82,33 @@ namespace EFCore1.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("users/{id}")]
         public async Task<ActionResult> DeleteUser([FromRoute] int id)
         {
             var repo = new UsersRepository(_dbContext);
             await repo.Delete(id);
+
+            return Ok();
+        }
+
+        [HttpPost("users/{id}/user-settings")]
+        public async Task<ActionResult> CreateUserSetting(
+            [FromRoute] int id,
+            UserSettings settings)
+        {
+            var repo = new UsersRepository(_dbContext);
+            await repo.InsertOneToOne(id, settings);
+
+            return Ok();
+        }
+
+        [HttpPost("users/{id}/blogs")]
+        public async Task<ActionResult> CreateBlogs(
+            [FromRoute] int id,
+            ICollection<Blog> blogs)
+        {
+            var repo = new UsersRepository(_dbContext);
+            await repo.InsertManyToMany(id, blogs);
 
             return Ok();
         }
