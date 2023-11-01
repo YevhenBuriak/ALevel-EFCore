@@ -1,14 +1,19 @@
-1. Create web API, cleanup unused files
-2. Intall packages and ef tools 
-	https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
-3. Create context, connect to mssql DB, and test connection
-4. Move connection string to better place, use appsetting, show user secrets
-5 - 6.
-	Add initial model discuss configuration, add initial migration, apply to db, change initial catalog
-	5. No Design time installed
-	6. Design time installed
+1. What is repository pattern what is UOW? Should we use repository, uow?
+https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30
+https://www.cosmicpython.com/book/chapter_02_repository.html
 
-7. Relationships (1-1, 1-*, *-*)
-8. Isolate configurations
-9. Database first + scafold  
-	dotnet ef dbcontext scaffold "Name=ConnectionStrings:EFCoreContext" Microsoft.EntityFrameworkCore.SqlServer
+
+2. Simple data manipulation: inset, update, delete
+2.1 Change tracking
+
+3. Related items data manipulation
+
+4. Simple query
+4.1 IQueryable
+4.2 Query logging
+
+5. Related items querying: lazy loading, eager loading
+
+6. What is transaction? ACID, EF core implementation
+7. DTOs
+8. Records
