@@ -93,5 +93,19 @@ namespace EFCore1.Repository
                      return user;
                  });
         }
+
+        public async Task TransactionSample()
+        {
+            using var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                //... do multiple operations
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+            }
+        }
     }
 }
