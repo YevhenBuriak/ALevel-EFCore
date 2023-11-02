@@ -10,7 +10,6 @@ namespace EFCore1.Models
 
         //*-*
 
-        [JsonIgnore]
         public ICollection<User>? Readers { get; set; }
 
         //1-*

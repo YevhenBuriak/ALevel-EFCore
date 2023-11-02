@@ -8,8 +8,7 @@ namespace EFCore1.Models
         public required string Text { get; set; }
 
         //1-*
-        [JsonIgnore]
-        public Blog Blog { get; set; }
+        public required Blog Blog { get; set; }
 
         //*-*
         public required ICollection<User> Athors { get; set; }

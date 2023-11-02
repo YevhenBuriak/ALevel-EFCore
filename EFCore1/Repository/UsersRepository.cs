@@ -77,15 +77,21 @@ namespace EFCore1.Repository
 
         public async Task<IEnumerable<User>> Get()
         {
-            // Can throw cycles, posible approaches:
-            // 1. Unidirectional relationship
-            // 2. JsonIgnore
-            // 3. global json loop ignore (if newtonsoft)
-            return await _dbContext.Users
+            return (await _dbContext.Users
                  .AsNoTracking()
-                 .Include(x => x.BlogSubscribsions)
-                 .ThenInclude(x => x.Articles)
-                 .ToListAsync();
+                 .Select(x => new
+                 {
+                     User = x,
+                     Blogs = x.BlogSubscribsions
+                 })
+                 .ToListAsync())
+                 .Select(x =>
+                 {
+                     var user = x.User;
+                     user.BlogSubscribsions = x.Blogs;
+
+                     return user;
+                 });
         }
     }
 }
