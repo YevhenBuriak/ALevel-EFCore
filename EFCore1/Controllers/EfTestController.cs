@@ -1,4 +1,5 @@
 ﻿using EFCore1.Context;
+using EFCore1.DTOs;
 using EFCore1.Models;
 using EFCore1.Repository;
 
@@ -66,10 +67,10 @@ namespace EFCore1.Controllers
         }
 
         [HttpPost("users")]
-        public async Task<ActionResult> CreateUser(User user)
+        public async Task<ActionResult> CreateUser(UserDto user)
         {
             var repo = new UsersRepository(_dbContext);
-            await repo.Insert(user);
+            //await repo.Insert(user);
 
             return Ok();
         }
