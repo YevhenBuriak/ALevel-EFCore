@@ -8,12 +8,12 @@
         public DateOnly? Birthday { get; set; }
 
         //1-1
-        public virtual UserSettings? UserSettings { get; set; }
+        public UserSettings? UserSettings { get; set; }
 
         //*-*
-        //public ICollection<Blog> BlogSubscribsions { get; set; } = new List<Blog>();
+        public ICollection<Blog> BlogSubscribsions { get; set; } = new List<Blog>();
 
         //*-*
-        //public ICollection<Article> Articles { get; set; } = new List<Article>();
+        public ICollection<Article> Articles { get; set; } = new List<Article>();
     }
 }

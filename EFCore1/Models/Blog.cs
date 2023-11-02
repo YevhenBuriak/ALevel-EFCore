@@ -1,4 +1,6 @@
-﻿namespace EFCore1.Models
+﻿using System.Text.Json.Serialization;
+
+namespace EFCore1.Models
 {
     public class Blog
     {
@@ -7,9 +9,11 @@
         public string? Description { get; set; }
 
         //*-*
-        //public ICollection<User>? Readers { get; set; }
+
+        [JsonIgnore]
+        public ICollection<User>? Readers { get; set; }
 
         //1-*
-        //public ICollection<Article>? Articles { get; set; }
+        public ICollection<Article>? Articles { get; set; }
     }
 }

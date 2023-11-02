@@ -10,7 +10,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(x => x.Id);
         builder.Property(b => b.Name).IsRequired();
         builder.Property(b => b.Surname).IsRequired();
 
@@ -21,12 +20,17 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 y => y.HasValue ? DateOnly.FromDateTime(y.Value) : null)
             );
 
-        //builder
-        //    .HasOne(x => x.UserSettings)
-        //    .WithOne(x => x.User)
-        //    .OnDelete(DeleteBehavior.ClientSetNull);
+        builder
+            .HasOne(x => x.UserSettings)
+            .WithOne(x => x.User)
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
-        //builder.HasMany(x => x.Articles).WithMany(x => x.Athors);
-        //builder.HasMany(x => x.BlogSubscribsions).WithMany(x => x.Readers);
+        builder.HasMany(x => x.Articles).WithMany(x => x.Athors);
+        builder
+            .HasMany(x => x.BlogSubscribsions)
+            .WithMany(x => x.Readers)
+            .UsingEntity(
+                l => l.HasOne(typeof(User)).WithMany().HasForeignKey("ReadersId"),
+                r => r.HasOne(typeof(Blog)).WithMany().HasForeignKey("BlogSubscribsionsId"));
     }
 }

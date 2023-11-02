@@ -61,7 +61,7 @@ namespace EFCore1.Repository
             var existingUser = await _dbContext.Users.FindAsync(userId);
             if (existingUser == null) return;
 
-            existingUser.UserSettings = settings;
+            //existingUser.UserSettings = settings;
             _ = await _dbContext.SaveChangesAsync();
         }
 
@@ -71,13 +71,21 @@ namespace EFCore1.Repository
             var existingUser = await _dbContext.Users.FindAsync(userId);
             if (existingUser == null) return;
 
-            //existingUser.BlogSubscribsions = blogs;
+            existingUser.BlogSubscribsions = blogs;
             _ = await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<User>> Get()
         {
-           return await _dbContext.Users.ToListAsync();
+            // Can throw cycles, posible approaches:
+            // 1. Unidirectional relationship
+            // 2. JsonIgnore
+            // 3. global json loop ignore (if newtonsoft)
+            return await _dbContext.Users
+                 .AsNoTracking()
+                 .Include(x => x.BlogSubscribsions)
+                 .ThenInclude(x => x.Articles)
+                 .ToListAsync();
         }
     }
 }

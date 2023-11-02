@@ -2,6 +2,8 @@ using EFCore1.Context;
 
 using Microsoft.EntityFrameworkCore;
 
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +12,7 @@ builder.Services.AddDbContext<EFCoreContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(EFCoreContext)));
     options.EnableSensitiveDataLogging();
-    options.UseLazyLoadingProxies();
+    //options.UseLazyLoadingProxies();
 });
 
 

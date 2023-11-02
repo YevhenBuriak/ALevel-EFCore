@@ -15,9 +15,9 @@ public class UserSettingConfiguration : IEntityTypeConfiguration<UserSettings>
                 v => v.ToString(),
                 v => (ThemeSetting)Enum.Parse(typeof(ThemeSetting), v)
             );
-        //builder
-        //    .HasOne(x => x.User)
-        //    .WithOne(x => x.UserSettings)
-        //    .OnDelete(DeleteBehavior.Cascade);
+        builder
+            .HasOne(x => x.User)
+            .WithOne(x => x.UserSettings)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
